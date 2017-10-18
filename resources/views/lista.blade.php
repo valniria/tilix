@@ -6,7 +6,7 @@
 		<div class="lista">	
 			<?php
 	        if (!empty($mensagem)){ 
-		        echo '<div class="alert '.$tipoMensagem.' alert-dismissible" role="alert">'; ?>
+		        echo '<div class="alert alert-success alert-dismissible" role="alert">'; ?>
 		            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		                <span aria-hidden="true">&times;</span>
 		            </button>
@@ -33,7 +33,9 @@
 					<label>VALOR</label>
 				</div>
 			</div>
-			<?php foreach ($usuarios as $usuario) { ?>
+			<?php foreach ($usuarios as $usuario) { 
+				$row = DB::select('select * from titulos where id_usuario ='. $usuario->id);
+			?>
 			<div class="row">
 				<hr>
 				<div class="col-xs-1">
@@ -43,19 +45,20 @@
 					<img width="100px" class="img-circle image-list" src="/img/<?php echo $usuario->foto ?>">
 				</div>
 				<div class="col-xs-2">
-					<label><?php echo $usuario->nome ?></label>
+					<label>{{ date('d/m/Y - g:i a',  strtotime($usuario->nome)) }}</label>
 				</div>
 				<div class="col-xs-2">
-					<?php echo $usuario->email ?>
+					{{ date('d/m/Y - g:i a',  strtotime($usuario->email)) }}
 				</div>
 				<div class="col-xs-2">
-					<?php echo $usuario->email ?>
+					{{ date('d/m/Y - g:i a',  strtotime($row[0]->data_vencimento)) }}
 				</div>
 				<div class="col-xs-2">
-					<?php echo $usuario->email ?>
+					{{ date('d/m/Y - g:i a',  strtotime($row[0]->valor)) }}
 				</div>
 				<div class="col-xs-1">
-					<a href="/usuarios/header/<?= $usuario->id ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+					<!-- <a href="/usuarios/header/<?= $usuario->id ?>"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+					<a href="/usuarios/header/<?= $usuario->id ?>"><i class="fa fa-search" aria-hidden="true"></i></a>
 					<a href="/usuarios/editar/<?= $usuario->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					<a href="/usuarios/excluir/<?= $usuario->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
 				</div>

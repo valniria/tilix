@@ -16,6 +16,13 @@ class UsuarioController extends Controller {
 
 	public function lista() {
 		$usuarios = DB::select('select * from usuarios');
+		// $usuarios = DB::table('usuarios')
+  //           ->join('titulos', 'usuarios.id', '=', 'titulos.id_usuario')
+  //           ->select('usuarios.*', 'titulos.*')
+  //           // ->groupBy('usuarios.id')
+  //           ->get();
+
+
 		return view('lista')->with('usuarios', $usuarios);
 	}
 
@@ -28,12 +35,34 @@ class UsuarioController extends Controller {
 	}
 
 	public function enviarTitulo() {
-		// $id = Request::route('id');
-		return view('enviar');
+		$id = Request::route('id');
+
+		return view('enviar')->with('id', $id);
 	}
 
 	public function salvarEnvio() {
-		return "Salvo com sucesso!";
+		
+		$dados = array(
+			'data_vencimento' 	=> Request::input('data_vencimento'),
+			'valor' 			=> Request::input('valor'),
+			'id_usuario'		=> Request::route('id'),
+		);
+
+		$usuarios = DB::select('select * from usuarios');
+		
+		if(DB::table('titulos')->insert($dados)){
+
+			$mensagem = "Título Enviado com Sucesso!";
+			$tipoMensagem ="alert-success";
+			
+		} else {
+			$mensagem = "Ocorreu um Erro ao Salvar!";
+			$tipoMensagem = "alert-danger";
+		
+		}
+
+		// return view('lista')->with('retorno', $retorno);
+		return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
 	}
 
 	public function salvarEdicao() {

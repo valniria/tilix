@@ -31,6 +31,7 @@
 					{{ date('d/m/Y - g:i a',  strtotime($usuario->ultimo_envolvimento)) }}
 				</div>
 				<div class="botoes-alinhados">
+					<a href="/" class="btn botao-voltar">Voltar</a>
 					<a class="btn botao-editar" href="/usuarios/editar/<?= $usuario->id ?>">Editar dados</a>
 					<a class="btn botao-enviar" href="/usuarios/enviar/<?=$usuario->id ?>">Enviar Título</a>
 				</div>

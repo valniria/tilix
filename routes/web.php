@@ -24,6 +24,6 @@ Route::any('/usuarios/editar/{id}', 'UsuarioController@editar');
 Route::get('/usuarios/enviar/{id}', 'UsuarioController@enviarTitulo');
 
 
-Route::post('/usuarios/salvarEnvio/', 'UsuarioController@salvarEnvio');
+Route::post('/usuarios/salvarEnvio/{id}', 'UsuarioController@salvarEnvio');
 
 Route::get('/usuarios/excluir/{id}', 'UsuarioController@excluir');
