@@ -1,0 +1,85 @@
+.header {
+    background-image: url('/img/img2.png');
+    background-repeat: no-repeat;
+    background-size:100%;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    padding: 3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 370px;
+    font-family: arial;
+    color: grey;
+}
+
+.placa-branca {
+    background-color: #fff;
+    top: 10%;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow: auto;
+    padding: 4em;
+}
+
+h3 {
+  margin-top: 0px;
+}
+
+p {
+  margin: -25px 0 -10px;
+}
+
+.envolvimento {
+  padding: 1px 10px 1px;
+  font-size: 12px;
+}
+
+.campo {
+  margin-left: 30px;
+}
+
+.botoes-alinhados {
+  float:right
+}
+
+.botao-editar {
+  color: #fff;
+  background-color: rgba(128, 128, 128, 0.6);
+  border-radius: 20px 20px 20px 20px;
+  padding: 5px 30px 5px;
+}
+
+.botao-enviar {
+  color: #fff;
+  background-color: rgb(42, 178, 123);
+  border-radius: 20px 20px 20px 20px;
+  padding: 5px 30px 5px !important; 
+}
+
+.botao-enviar, .botao-editar, .btn.focus, .btn:focus, .btn:hover, .btn.active, .btn:active {
+  color: #fff !important;
+}
+
+.botao-voltar {
+  color: #fff;
+  background-color: #0575ff;
+  border-radius: 20px 20px 20px 20px;
+  padding: 5px 30px 5px; 
+}
+
+.lista {
+  text-align: center;
+}
+
+.image-list {
+  width: 50px;
+  margin-top: -15px;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
