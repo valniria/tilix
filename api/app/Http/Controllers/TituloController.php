@@ -13,18 +13,21 @@ class TituloController extends Controller {
 
 		header("Access-Control-Allow-Origin: *");
 
-		// $usuarios = Usuario::all();
+		$usuarios = Usuario::all();
+		if(isset($usuarios[0]->titulo[0]))
+		$usuarios->titulos = $usuarios[0]->titulo[0];
 
-		$usuarios = DB::table('usuarios')
-            ->join('titulos', 'titulos.id_usuario', '=', 'usuarios.id')
-            ->groupBy('titulos.id_usuario')
-            ->select('usuarios.*', 'titulos.id_usuario', 'titulos.data_vencimento', 'titulos.valor')
-            ->get();
+		// var_dump($usuarios[0]->titulo[0]);die;
 
-        
-    	return response()->json($usuarios);
+		// foreach ($usuarios as $user) {
 
-        // return Usuario::all();
+		// 	var_dump($user);die;
+
+		// 	$tudo = array_merge($user, $user->titulo[0]);
+		// }
+
+    	// return response()->json($usuarios);
+    	return  json_encode($usuarios);
 	}
 
 	public function enviarTitulo($id) {
@@ -39,20 +42,18 @@ class TituloController extends Controller {
 		$usuarios = Usuario::all();
 		
 		$params = Request::all();
-		// $params = array_add($params, 'id_usuario', $id);
 		$titulo = new Titulo($params);
 
 		$titulo->save();
 
-		return response()->json(["ok" => true]); 
-		// return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
+		return response()->json(["ok" => true]);
 	}
 
 	public function excluir($id) {
 		header("Access-Control-Allow-Origin: *");
-		$usuario = Usuario::find($id);
+		$titulo = Titulo::find($id);
 		
-		$usuario->delete();
+		$titulo->delete();
 
 		return response()->json(["ok" => true]); 
 	}

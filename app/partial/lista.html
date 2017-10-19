@@ -21,30 +21,54 @@
 					<label>VALOR</label>
 				</div>
 			</div>
-			<div class="row" ng-repeat="usuario in usuarios">
-				<hr>
-				<div class="col-xs-1">
-					<input type="checkbox" id="checkItem" name="check">
+			<div ng-repeat="usuario in usuarios">
+				<div class="row" ng-repeat="t in usuario.titulo || usuario.titulo.length">
+					<hr>
+					<div class="col-xs-1">
+						<input type="checkbox" id="checkItem" name="check">
+					</div>
+					<div class="col-xs-2">
+						<img width="100px" class="img-circle image-list" ng-src="/img/{{usuario.foto}}">
+					</div>
+					<div class="col-xs-2">
+						<span>{{usuario.nome}}</span>
+					</div>
+					<div class="col-xs-2">
+						{{usuario.email}}
+					</div>
+					<div class="col-xs-2">
+						{{t.data_vencimento}}
+						
+					</div>
+					<div class="col-xs-2">
+						{{t.valor}}
+					</div>
+					<div class="col-xs-1">
+						<a ng-href="/header/{{usuario.id}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+						<a ng-click="excluir(t.id)"><i class="fa fa-times" aria-hidden="true"></i></a>
+					</div>
 				</div>
-				<div class="col-xs-2">
-					<img width="100px" class="img-circle image-list" ng-src="/img/{{usuario.foto}}">
-				</div>
-				<div class="col-xs-2">
-					<span>{{usuario.nome}}</span>
-				</div>
-				<div class="col-xs-2">
-					{{usuario.email}}
-				</div>
-				<div class="col-xs-2">
-					{{usuario.data_vencimento}}
-					
-				</div>
-				<div class="col-xs-2">
-					{{usuario.valor}}
-				</div>
-				<div class="col-xs-1">
-					<a ng-href="/header/{{usuario.id}}"><i class="fa fa-search" aria-hidden="true"></i></a>
-					<a ng-click="excluir(usuario.id)"><i class="fa fa-times" aria-hidden="true"></i></a>
+				<div class="row" ng-if="!usuario.titulo.length">
+					<hr>
+					<div class="col-xs-1">
+						<input type="checkbox" id="checkItem" name="check">
+					</div>
+					<div class="col-xs-2">
+						<img width="100px" class="img-circle image-list" ng-src="/img/{{usuario.foto}}">
+					</div>
+					<div class="col-xs-2">
+						<span>{{usuario.nome}}</span>
+					</div>
+					<div class="col-xs-2">
+						{{usuario.email}}
+					</div>
+					<div class="col-xs-2">
+					</div>
+					<div class="col-xs-2">
+					</div>
+					<div class="col-xs-1">
+						<a ng-href="/header/{{usuario.id}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+					</div>
 				</div>
 			</div>
 		</div>

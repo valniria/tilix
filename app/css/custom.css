@@ -1,8 +1,7 @@
 .header {
-    background-image: url('/img/img2.png');
-    height: 370px;
-    background-repeat: no-repeat;
-    background-size:100%;
+    background: url('/img/img2.png') no-repeat top center fixed;
+    /*background-repeat: no-repeat;*/
+    background-size:100% 400px;
     bottom: 0;
     color: black;
     left: 0;

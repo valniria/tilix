@@ -1,5 +1,5 @@
 'use strict';
-angular.module('tilix').controller('ListaController', function($scope, listaService, tokenService,excluirTituloService) {
+angular.module('tilix').controller('ListaController', function($scope, $location, listaService, tokenService,excluirTituloService) {
 
 	$scope.usuarios = [];
 
@@ -18,9 +18,10 @@ angular.module('tilix').controller('ListaController', function($scope, listaServ
 	$scope.excluir = function(id){
 		if(confirm("Tem certeza que deseja excluir?")){
 			excluirTituloService.delete({idTitulo : id}, function(){
-				alert('deletou');
+				alert('Título excluído com sucesso');
+				$location.path( "/" );
 			}, function(){
-				alert("Não exclui kk");
+				alert("Não foi possível excluir.");
 			});
 		}
 	}
