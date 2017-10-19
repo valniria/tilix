@@ -1,4 +1,4 @@
-angular.module('tilix', ['ngAnimate', 'ngRoute', 'ngResource', 'meusServicos'])
+angular.module('tilix', ['ngAnimate', 'ngRoute', 'ngResource', 'meusServicos', 'minhasDiretivas'])
 .config(function($routeProvider, $locationProvider, $httpProvider) {
 
 	$locationProvider.html5Mode(true);
@@ -14,6 +14,5 @@ angular.module('tilix', ['ngAnimate', 'ngRoute', 'ngResource', 'meusServicos'])
 	$routeProvider.when('/header/:idUsuario', {
 		templateUrl: 'partial/header.html',
 		controller: 'HeaderController'
-	});
-	
+	});	
 });

@@ -12,7 +12,7 @@ class UsuarioController extends Controller {
 
 	public function header($id) {
 		header("Access-Control-Allow-Origin: *");
-		$usuarios = Usuario::find(1);
+		$usuarios = Usuario::find($id);
 		
 		// return view('header')->with('usuario', $usuarios);
 		return response()->json(array($usuarios));
@@ -26,26 +26,23 @@ class UsuarioController extends Controller {
 		return view('enviar')->with('id', $id);
 	}
 
-	public function salvarEdicao() {
+	public function salvarEdicao($id) {
 
-		
+		header("Access-Control-Allow-Origin: *");
 
 		$usuario = Usuario::find($id);
+		$arrayDados = Request::all();
 
-		$params = Request::all();
+		$usuario->nome = $arrayDados['nome'];
+		$usuario->email = $arrayDados['email'];
+		$usuario->envolvimento = $arrayDados['envolvimento'];
+		$usuario->cpf = $arrayDados['cpf'];
+		$usuario->data_cadastro = $arrayDados['data_cadastro'];
+		$usuario->ultimo_envolvimento = $arrayDados['ultimo_envolvimento'];
+		$usuario->foto = $arrayDados['foto'];
 
+		$usuario->save();
 
-		if($usuario->save()){
-
-			$mensagem = "Título Enviado com Sucesso!";
-			$tipoMensagem ="alert-success";
-			
-		} else {
-			$mensagem = "Ocorreu um Erro ao Salvar!";
-			$tipoMensagem = "alert-danger";
-		
-		}
-
-		return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
+		return response()->json(["ok" => true]); 
 	}
 }

@@ -1,5 +1,6 @@
 .header {
     background-image: url('/img/img2.png');
+    height: 370px;
     background-repeat: no-repeat;
     background-size:100%;
     bottom: 0;
@@ -9,8 +10,7 @@
     padding: 3em;
     position: absolute;
     right: 0;
-    top: 0;
-    height: 370px;
+    top: 0;    
     font-family: arial;
     color: grey;
 }

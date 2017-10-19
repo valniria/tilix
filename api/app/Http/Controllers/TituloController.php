@@ -13,12 +13,12 @@ class TituloController extends Controller {
 
 		header("Access-Control-Allow-Origin: *");
 
-		// return view('principal')->with('usuarios', $usuarios);
 		// $usuarios = Usuario::all();
 
 		$usuarios = DB::table('usuarios')
             ->join('titulos', 'titulos.id_usuario', '=', 'usuarios.id')
             ->groupBy('titulos.id_usuario')
+            ->select('usuarios.*', 'titulos.id_usuario', 'titulos.data_vencimento', 'titulos.valor')
             ->get();
 
         
@@ -31,44 +31,29 @@ class TituloController extends Controller {
 		return view('enviar')->with('id', $id);
 	}
 
-	public function salvarEnvio($id) {
+	public function salvarTitulo() {
+
+		header("Access-Control-Allow-Origin: *");
+		// header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 
 		$usuarios = Usuario::all();
 		
 		$params = Request::all();
-		$params = array_add($params, 'id_usuario', $id);
+		// $params = array_add($params, 'id_usuario', $id);
 		$titulo = new Titulo($params);
 
-		if($titulo->save()){
+		$titulo->save();
 
-			$mensagem = "Título Enviado com Sucesso!";
-			$tipoMensagem ="alert-success";
-			
-		} else {
-			$mensagem = "Ocorreu um Erro ao Salvar!";
-			$tipoMensagem = "alert-danger";
-		
-		}
-
-		return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
+		return response()->json(["ok" => true]); 
+		// return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
 	}
 
 	public function excluir($id) {
+		header("Access-Control-Allow-Origin: *");
 		$usuario = Usuario::find($id);
 		
-		if($usuario->delete()){
+		$usuario->delete();
 
-			$mensagem = "Usuário Excluído com Sucesso!";
-			$tipoMensagem ="alert-success";
-			
-		} else {
-			$mensagem = "Ocorreu um Erro ao Excluir!";
-			$tipoMensagem = "alert-danger";
-		
-		}
-
-		$usuarios = Usuario::all();
-
-		return view('lista', compact('mensagem', 'tipoMensagem', 'usuarios'));
+		return response()->json(["ok" => true]); 
 	}
 }

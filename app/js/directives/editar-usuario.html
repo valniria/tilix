@@ -1,0 +1,29 @@
+<div class="placa-branca">
+		<h2>Editar Dados</h2>
+		<form>
+			<div class="row">
+				<div class="form-group">
+					<input type="text" ng-model="usuario.nome" class="form-control" name="nome" >
+				</div>
+				<div class="form-group">
+					<input type="email" ng-model="usuario.email" class="form-control" name="email">
+				</div>
+				<div class="form-group">
+					<input type="text" ng-model="usuario.envolvimento" class="form-control" name="envolvimento">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<input type="text" ng-model="usuario.cpf" class="form-control" name="cpf" >
+				</div>
+				<div class="form-group">
+					<input type="datetime" ng-model="usuario.data_cadastro" class="form-control" name="data_cadastro">
+				</div>
+				<div class="form-group">
+					<input type="datetime" ng-model="usuario.ultimo_envolvimento" class="form-control" name="ultimo_envolvimento">
+				</div>
+			</div>
+			<button class="btn botao-enviar" ng-click="salvar()">Enviar</button>
+			<a ng-href="/" class="btn botao-voltar">Voltar</a>
+		</form>	
+	</div

@@ -1,8 +1,30 @@
 'use strict';
-angular.module('tilix').controller('HeaderController', function($scope, headerService, $routeParams) {
+angular.module('tilix').controller('HeaderController', function($scope, $location, headerService, $routeParams, tituloService, editarUsuarioService) {
 
-	$scope.usuario = {};
+	$scope.usuario = {
+		'id' : "",
+		'nome':"",
+		'email' : "",
+		'envolvimento' : "",
+		'cpf' : "",
+		'data_cadastro' : "",
+		'ultimo_envolvimento' : ""
+	};
+	$scope.titulo = {
+		'data_vencimento' : "",
+		'valor' : "",
+		'id_usuario': $routeParams.idUsuario
+	};
+	$scope.showTitulo = false;
+	$scope.showUsuario = false;
 
+	$scope.openTitulo = function(){
+		$scope.showTitulo = true;
+	}
+
+	$scope.openEditar = function(){
+		$scope.showUsuario = true;
+	}
 
 
 	headerService.query({ idUsuario : $routeParams.idUsuario }, function(usuario) {
@@ -12,30 +34,26 @@ angular.module('tilix').controller('HeaderController', function($scope, headerSe
 		console.log(erro);
 	});
 
-	$scope.editar = function(data){
-		$scope.lista = data;
-		$('#myModal').modal('show');
-	}
-
 	$scope.salvar = function(){
-		if($scope.lista.id){
-			listaService.edita($scope.lista).success(function(res){
-				$scope.listar();
-				$('#myModal').modal('hide');
-			});
-		}else{
-			listaService.cadastra($scope.lista).success(function(res){
-				$scope.listar();
-				$('#myModal').modal('hide');
-			});
-		}
+		tituloService.save($scope.titulo, function(resposta) {
+		$scope.showTitulo = false;
+
+		alert("Salvo com sucesso");
+		$location.path( "/" );
+		}, function(erro) {
+			console.log(erro);
+		});
+	}
+	
+	$scope.update = function(usuario){
+		editarUsuarioService.update({ idUsuario : $routeParams.idUsuario }, $scope.usuario, function(resposta) {
+		$scope.showUsuario = false;
+
+		alert("Atualizado com sucesso");
+		$location.path( "/" );
+		}, function(erro) {
+			console.log(erro);
+		});
 	}
 
-	$scope.excluir = function(data){
-		if(confirm("Tem certeza que deseja excluir?")){
-			listaService.exclui(data.id).success(function(res){
-				$scope.listar();
-			});
-		}
-	}
 });

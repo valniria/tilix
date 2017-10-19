@@ -1,37 +1,36 @@
 <div class="header">
 	<div class="placa-branca">
-		<!-- <div class="container">	 -->
-			<div class="row">
-				<div class="col-xs-1">
-					<!-- <img width="100px" class="img-circle" src="/img/<?php echo $usuario->foto ?>"> -->
-				</div>
-				<div class="col-xs-3 campo">
-					<h3><strong>{{usuario.nome}}</strong></h3><br>
-					<p>{{usuario.email}}</p><br>
-					<button class="btn btn-success envolvimento">{{usuario.envolvimento}}</button>
-				</div>
-				<!-- <div class="col-xs-9"></div> -->
+		<div class="row">
+			<div class="col-xs-1">
+				<img width="100px" class="img-circle" ng-src="/img/{{usuario.foto}}">
 			</div>
-			<br />
-			<div class="row">
-				<div class="col-xs-2">
-					<strong>CPF</strong><br>
-					{{usuario.cpf}}
-				</div>
-				<div class="col-xs-2">
-					<strong>Data de cadastro</strong><br>
-					{{usuario.data_cadastro}}
-				</div>
-				<div class="col-xs-2">
-					<strong>Último Envolvimento</strong><br>
-					{{$usuario.ultimo_envolvimento}}
-				</div>
-				<div class="botoes-alinhados">
-					<a href="/" class="btn botao-voltar">Voltar</a>
-					<!-- <a class="btn botao-editar" href="/usuario/editar/<?= $usuario->id ?>">Editar dados</a>
-					<a class="btn botao-enviar" href="/titulo/enviar/<?=$usuario->id ?>">Enviar Título</a> -->
-				</div>
+			<div class="col-xs-3 campo">
+				<h3><strong>{{usuario.nome}}</strong></h3><br>
+				<p>{{usuario.email}}</p><br>
+				<button class="btn btn-success envolvimento">{{usuario.envolvimento}}</button>
 			</div>
-		<!-- </div> -->
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-xs-2">
+				<strong>CPF</strong><br>
+				{{usuario.cpf}}
+			</div>
+			<div class="col-xs-2">
+				<strong>Data de cadastro</strong><br>
+				{{usuario.data_cadastro}}
+			</div>
+			<div class="col-xs-2">
+				<strong>Último Envolvimento</strong><br>
+				{{$usuario.ultimo_envolvimento}}
+			</div>
+			<div class="botoes-alinhados">
+				<a href="/" class="btn botao-voltar">Voltar</a>
+				<a class="btn botao-editar" ng-click="openEditar()">Editar dados</a>
+				<a class="btn botao-enviar" ng-click="openTitulo()">Enviar Título</a>
+			</div>
+		</div>
 	</div>
+	<editar-usuario usuario="usuario" salvar="update" ng-if="showUsuario"></editar-usuario>
+	<enviar-titulo usuario="usuario" salvar="salvar" titulo="titulo" ng-if="showTitulo"></enviar-titulo>
 </div>
